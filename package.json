@@ -4,7 +4,9 @@
   "description": "Create a business card via linkedIN's API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js",
+    "bundle": "browserify client.js -o bundle.js",
+    "start": "npm run bundle && node server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/ClarkGH/BusinessCards/issues"
   },
-  "homepage": "https://github.com/ClarkGH/BusinessCards"
+  "homepage": "https://github.com/ClarkGH/BusinessCards",
+  "devDependencies": {
+    "beefy": "^2.1.1",
+    "browserify": "^6.3.3",
+    "tape": "^3.0.3"
+  }
 }

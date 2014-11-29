@@ -8,6 +8,10 @@ app.set('view engine', 'handlebars');
 
 app.set('port', process.env.PORT || 3000);
 
+//Middleware
+app.use(express.static(__dirname + '/public'));
+
+//Routes
 app.get('/', function(req, res) {
   res.render('home');
 });

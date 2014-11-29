@@ -1,0 +1,22 @@
+{
+  "name": "BusinessCards",
+  "version": "1.0.0",
+  "description": "Create a business card using LinkedIn's API",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ClarkGH/BusinessCards.git"
+  },
+  "author": "Clark Hinchcliff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ClarkGH/BusinessCards/issues"
+  },
+  "homepage": "https://github.com/ClarkGH/BusinessCards",
+  "dependencies": {
+    "express": "^4.10.4"
+  }
+}

@@ -1,14 +1,6 @@
 var express = require('express');
 var app = express();
-var adviceContainer = [
-  "You're beautiful.",
-  "Stay Amazing.",
-  "You're too great to give up.",
-  "Little by little, improve.",
-  "Effort is the key.",
-  "You have the talent you need.",
-  "Make others happy."
-];
+var adviceContainer = require('./lib/advice.js')
 
 var handlebars = require('express3-handlebars')
   .create({ defaultLayout:'main' });
@@ -28,8 +20,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/about', function(req, res) {
-  var randomAdvice = adviceContainer[Math.floor(Math.random() * adviceContainer.length)];
-  res.render('about', { advice: randomAdvice });
+  res.render('about', { advice: adviceContainer.getAdvice() } );
 });
 
 app.use(function(req, res) {

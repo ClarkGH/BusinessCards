@@ -5,7 +5,7 @@ var adviceContainer = require('./lib/advice.js');
 var handlebars = require('express3-handlebars')
   .create({ defaultLayout:'main' });
 
-
+app.disable('x-powered-by');
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 

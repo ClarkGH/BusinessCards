@@ -31,6 +31,14 @@ app.get('/about', function(req, res) {
   } );
 });
 
+app.get('/author/clark', function(req, res){
+  res.render('author/clark')
+});
+
+app.get('/author/contact-clark', function(req, res){
+  res.render('author/contact-clark')
+});
+
 app.use(function(req, res) {
   res.status(404);
   res.render('404');

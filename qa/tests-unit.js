@@ -1,4 +1,4 @@
-var advice = require('../../lib/advice.js');
+var advice = require('../lib/advice.js');
 var expect = require('chai').expect;
 
 suite('Advice tests', function(){

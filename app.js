@@ -26,8 +26,7 @@ app.get('/', function(req, res) {
 
 app.get('/about', function(req, res) {
   res.render('about', {
-    advice: adviceContainer.getAdvice(),
-    pageTestScript: '/qa/tests-about.js'
+    advice: adviceContainer.getAdvice()
   } );
 });
 

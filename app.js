@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var adviceContainer = require('./lib/advice.js');
+var credentials = require('./credentials.js');
 
 var handlebars = require('express3-handlebars').create({ defaultLayout:'main',
   helpers: {
@@ -11,6 +12,7 @@ var handlebars = require('express3-handlebars').create({ defaultLayout:'main',
     }
   }
 });
+
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
@@ -22,6 +24,8 @@ app.set('port', process.env.PORT || 3000);
 
 //Middleware
 app.use(require('body-parser')());
+app.use(require('cookie-parser')(credentials.cookieSecret));
+app.use(require('express-session')());
 app.use(express.static(__dirname + '/public'));
 
 app.use(function(req, res, next){
@@ -56,10 +60,12 @@ app.get('/author/contact-clark', function(req, res){
   res.render('author/contact-clark');
 });
 
+//delete later, an example
 app.get('/newsletter', function(req, res){
   res.render('newsletter', { csrf: 'CSRF token goes here.'});
 });
 
+//delete later, an example
 app.post('/process', function(req, res){
   if(req.xhr || req.accepts('json,html')==='json'){
     res.send({ success: true });

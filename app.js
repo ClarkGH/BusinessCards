@@ -2,13 +2,22 @@ var express = require('express');
 var app = express();
 var adviceContainer = require('./lib/advice.js');
 
-var handlebars = require('express3-handlebars')
-  .create({ defaultLayout:'main' });
-
-app.disable('x-powered-by');
+var handlebars = require('express3-handlebars').create({ defaultLayout:'main',
+  helpers: {
+    section: function(name, options){
+      if(!this._sections) this._sections = {};
+      this._sections[name] = options.fn(this);
+      return null;
+    }
+  }
+});
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
+//Disable powered by response head
+app.disable('x-powered-by');
+
+//Set port
 app.set('port', process.env.PORT || 3000);
 
 //Middleware

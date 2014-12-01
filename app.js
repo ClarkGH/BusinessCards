@@ -56,6 +56,18 @@ app.get('/author/contact-clark', function(req, res){
   res.render('author/contact-clark');
 });
 
+app.get('/newsletter', function(req, res){
+  res.render('newsletter', { csrf: 'CSRF token goes here.'});
+});
+
+app.post('/process', function(req, res){
+  console.log('Form (from querystring): ' + req.query.form);
+  console.log('CSRF token (from hidden form field): ' + req.body._csrf);
+  console.log('Name (from visible form field): ' + req.body.name);
+  console.log('Email (from visible form field): ' + req.body.email);
+  res.redirect(303, '/');
+});
+
 app.use(function(req, res) {
   res.status(404);
   res.render('404');
@@ -66,6 +78,9 @@ app.use(function(req, res) {
   res.render('500');
 });
 
+
+
+//Run
 app.listen(app.get('port'), function() {
   console.log( 'The express application is running on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.' );
 });

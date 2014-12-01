@@ -21,6 +21,7 @@ app.disable('x-powered-by');
 app.set('port', process.env.PORT || 3000);
 
 //Middleware
+app.use(require('body-parser')());
 app.use(express.static(__dirname + '/public'));
 
 app.use(function(req, res, next){

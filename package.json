@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ClarkGH/BusinessCards",
   "dependencies": {
+    "body-parser": "^1.9.3",
     "express": "^4.10.4",
     "express3-handlebars": "^0.5.2"
   },

@@ -39,6 +39,19 @@ switch(app.get('env')){
     throw new Error('Unknown execution environment: ' + app.get('env'));
 }
 
+//Seed data
+Test.find(function(err, test){
+  if(test.length) return;
+
+  new Test({
+    name: 'Bill',
+    description: 'I like pudding',
+    available: true,
+    inSeason: true,
+    age: 22,
+  }).save();
+});
+
 //Set port
 app.set('port', process.env.PORT || 3000);
 
@@ -91,6 +104,25 @@ app.post('/process', function(req, res){
   } else {
     res.redirect(303, '/');
   }
+});
+
+//delete later, route for test
+
+app.get('/test', function(req, res){
+  Test.find({ available: true }, function(err, test){
+    var context = {
+      test: test.map(function(test){
+        return {
+          name: test.name,
+          description: test.description,
+          available: test.available,
+          inSeason: test.inSeason,
+          age: test.age,
+        }
+      })
+    };
+    res.render('test', context);
+  });
 });
 
 //Run

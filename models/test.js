@@ -1,21 +1,14 @@
 var mongoose = require('mongoose');
-var vacationSchema = mongoose.Schema({
+
+var testSchema = mongoose.Schema({
   name: String,
-  slug: String,
-  category: String,
-  sku: String,
   description: String,
-  priceInCents: Number,
-  tags: [String],
-  inSeason: Boolean,
   available: Boolean,
-  requiresWaiver: Boolean,
-  maximumGuests: Number,
-  notes: String,
-  packagesSold: Number,
+  inSeason: Boolean,
+  age: Number,
 });
-vacationSchema.methods.getDisplayPrice = function(){
+testSchema.methods.getDisplayPrice = function(){
   return '$' + (this.priceInCents / 100).toFixed(2)
 };
 
-var Vacation = mongoose.model('Vacation', vacationSchema); module.exports = Vacation;
+var Test = mongoose.model('Test', testSchema); module.exports = Test;

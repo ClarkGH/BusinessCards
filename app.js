@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 var adviceContainer = require('./lib/advice.js');
-
 var handlebars = require('express3-handlebars')
   .create({ defaultLayout:'main' });
 

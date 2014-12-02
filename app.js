@@ -15,11 +15,29 @@ var handlebars = require('express3-handlebars').create({ defaultLayout:'main',
   }
 });
 
+var opts = {
+  server: {
+    socketOptions: { keepAlive: 1 }
+  }
+};
+
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
 //Disable powered by response head
 app.disable('x-powered-by');
+
+// DB connection
+switch(app.get('env')){
+  case 'development':
+    mongoose.connect(credentials.mongo.development.connectionString, opts);
+    break;
+  case 'production':
+    mongoose.connect(credentials.mongo.development.connectionString, opts);
+    break;
+  default:
+    throw new Error('Unknown execution environment: ' + app.get('env'));
+}
 
 //Set port
 app.set('port', process.env.PORT || 3000);

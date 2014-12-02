@@ -5,8 +5,8 @@ exports.home = function(req, res){
 };
 
 exports.about = function(req, res){
-  res.send('about', {
-    adviceContainer: adviceContainer.getAdvice(),
+  res.render('about', {
+    advice: adviceContainer.getAdvice(),
     // pageTestScript: '/qa/tests-about.js'
   } );
 };

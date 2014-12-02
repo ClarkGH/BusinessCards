@@ -3,6 +3,7 @@ var app = express();
 var mongoose = require('mongoose');
 var adviceContainer = require('./lib/advice.js');
 var credentials = require('./credentials.js');
+var Test = require('./models/test.js');
 
 var handlebars = require('express3-handlebars').create({ defaultLayout:'main',
   helpers: {

@@ -20,7 +20,8 @@
     "body-parser": "^1.9.3",
     "express": "^4.10.4",
     "express-session": "^1.9.2",
-    "express3-handlebars": "^0.5.2"
+    "express3-handlebars": "^0.5.2",
+    "mongoose": "^3.8.19"
   },
   "devDependencies": {
     "chai": "^1.10.0",

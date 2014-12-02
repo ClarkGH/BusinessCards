@@ -15,41 +15,8 @@ var handlebars = require('express3-handlebars').create({ defaultLayout:'main',
   }
 });
 
-//Server
-var opts = {
-  server: {
-    socketOptions: { keepAlive: 1 }
-  }
-};
-
-switch(app.get('env')){
-  case 'development':
-  mongoose.connect(credentials.mongo.development.connectionString, opts);
-  break;
-  case 'production':
-  mongoose.connect(credentials.mongo.production.connectionString, opts);
-  break
-  default:
-    throw new Error('Unknown execution environment: ' + app.get('env'));
-}
-
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-
-new Test({
-  name: 'Bob',
-  slug: 'Bill',
-  category: 'White Guy',
-  sku: 'Gerasdf',
-  description: 'Eat a poptart',
-  priceInCents: 1234,
-  tags: ['wub', 'jugga jigga wug', 'hi'],
-  inSeason: true,
-  requiresWaiver: true,
-  maximumGuests: 1,
-  available: true,
-  packagesSold: 0,
-}).save();
 
 //Disable powered by response head
 app.disable('x-powered-by');
@@ -107,36 +74,6 @@ app.post('/process', function(req, res){
     res.redirect(303, '/');
   }
 });
-
-//delete later, route handler test
-app.get('/test', function(req, res){
-  Test.find({ available: true }, function(err, tests){
-    var context = {
-      tests: tests.map(function(test){
-        return {
-          sku: test.sku,
-          name: test.name,
-          description: test.description,
-          price: test.getDisplayPrice(),
-          inSeason: test.inSeason,
-        }
-      })
-    };
-    res.render('test', context);
-  });
-});
-
-app.use(function(req, res) {
-  res.status(404);
-  res.render('404');
-});
-
-app.use(function(req, res) {
-  res.status(500);
-  res.render('500');
-});
-
-
 
 //Run
 app.listen(app.get('port'), function() {

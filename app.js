@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 var adviceContainer = require('./lib/advice.js');
+var main = require('./handlers/main.js');
+
 var handlebars = require('express3-handlebars')
   .create({ defaultLayout:'main' });
 
@@ -21,6 +23,15 @@ app.use(function(req, res, next){
 //Routes
 require('./routes.js')(app);
 
+app.use(function(req, res) {
+  res.status(404);
+  res.render('404');
+});
+
+app.use(function(req, res) {
+  res.status(500);
+  res.render('500');
+});
 
 app.listen(app.get('port'), function() {
   console.log( 'The express application is running on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.' );

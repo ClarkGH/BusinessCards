@@ -5,9 +5,14 @@ var main            = require('./handlers/main.js');
 var bodyParser      = require('body-parser')
 var mongoose        = require('mongoose')
 var credentials     = require('./credentials.js')
-
 var handlebars = require('express3-handlebars')
-  .create({ defaultLayout:'main' });
+  .create({ defaultLayout:'main',
+  helpers: {
+    static: function(name) {
+      return require('./lib/static.js').map(name);
+    }
+  }
+});
 
 //bodyParser() config to allow getting POST data
 app.use(bodyParser.urlencoded({ extended: true }));
